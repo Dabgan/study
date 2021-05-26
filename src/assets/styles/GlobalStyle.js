@@ -18,4 +18,9 @@ export const GlobalStyle = createGlobalStyle`
   a, button {
     font-family: 'Montserrat', sans-serif;
   }
+  
+  p {
+    margin: 0;
+    padding: 0;
+  }
 `;

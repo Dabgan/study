@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.li`
     display: flex;
-    align-items: center;
     position: relative;
+    color: ${({ theme }) => theme.colors.fontColor};
+    padding: 30px;
     &:not(:last-child)::after {
         content: '';
         position: absolute;
@@ -12,4 +13,13 @@ export const Wrapper = styled.li`
         height: 1px;
         background-color: lightgrey;
     }
+`;
+
+export const Name = styled.p`
+    font-size: ${({ theme }) => theme.fontSize.l};
+    font-weight: bold;
+`;
+
+export const Attendance = styled.p`
+    font-size: ${({ theme }) => theme.fontSize.m};
 `;
