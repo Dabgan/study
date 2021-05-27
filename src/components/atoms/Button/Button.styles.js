@@ -7,9 +7,7 @@ export const StyledButton = styled.button`
     border-radius: 50px;
     border: none;
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${({ theme }) => theme.flexCenter}
     cursor: pointer;
     svg {
         width: 100%;

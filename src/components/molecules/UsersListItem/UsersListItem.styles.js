@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.li`
     display: flex;
     position: relative;
-    color: ${({ theme }) => theme.colors.fontColor};
+    color: ${({ theme }) => theme.colors.darkGrey};
     padding: 30px;
     &:not(:last-child)::after {
         content: '';
@@ -15,11 +15,12 @@ export const Wrapper = styled.li`
     }
 `;
 
-export const Name = styled.p`
-    font-size: ${({ theme }) => theme.fontSize.l};
-    font-weight: bold;
-`;
-
-export const Attendance = styled.p`
-    font-size: ${({ theme }) => theme.fontSize.m};
+export const StyledInfo = styled.div`
+    p:first-child {
+        font-size: ${({ theme }) => theme.fontSize.l};
+        font-weight: bold;
+    }
+    p:last-child {
+        font-size: ${({ theme }) => theme.fontSize.m};
+    }
 `;
