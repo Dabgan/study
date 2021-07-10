@@ -13,7 +13,7 @@ const Wrapper = styled.div`
     }
 `;
 
-const FormField = ({ onChange, value, label, name, id, type = 'text', ...props }) => {
+const FormField = ({ onChange, value, label, name, id, type = 'text' }) => {
     return (
         <Wrapper>
             <Label htmlFor={id}>{label}</Label>
@@ -27,6 +27,8 @@ FormField.propTypes = {
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     type: PropTypes.string,
+    onChange: PropTypes.func,
+    value: PropTypes.string,
 };
 
 export default FormField;

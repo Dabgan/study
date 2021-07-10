@@ -3,6 +3,8 @@ import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper.js';
 import { Title } from 'components/atoms/Title/Title.js';
 import { Button } from 'components/atoms/Button/Button';
 import FormField from 'components/molecules/FormField/FormField';
+import PropTypes from 'prop-types';
+import { UserShape } from 'types';
 
 const AddUser = ({ handleAddUser, formValues, handleInputChange }) => {
     return (
@@ -28,6 +30,12 @@ const AddUser = ({ handleAddUser, formValues, handleInputChange }) => {
             </ViewWrapper>
         </>
     );
+};
+
+AddUser.propTypes = {
+    handleAddUser: PropTypes.func.isRequired,
+    formValues: PropTypes.shape(UserShape),
+    handleInputChange: PropTypes.func.isRequired,
 };
 
 export default AddUser;
