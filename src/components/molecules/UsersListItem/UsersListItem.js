@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'components/atoms/Button/Button';
+import Button from 'components/atoms/DeleteButton/DeleteButton';
 import Average from 'components/atoms/Average/Average';
 import { Wrapper, StyledInfo } from './UsersListItem.styles';
 
@@ -10,7 +10,7 @@ const UsersListItem = ({ deleteUser, userData: { average, name, attendance = '0%
             <Average averageData={average}>{average}</Average>
             <StyledInfo>
                 <p>{name}</p>
-                <p>attendance:{attendance}</p>
+                <p>attendance: {attendance}</p>
             </StyledInfo>
             <Button onClick={() => deleteUser(name)} />
         </Wrapper>
@@ -18,7 +18,7 @@ const UsersListItem = ({ deleteUser, userData: { average, name, attendance = '0%
 };
 
 UsersListItem.propTypes = {
-    delete: PropTypes.func.isRequired,
+    deleteUser: PropTypes.func.isRequired,
     userData: PropTypes.shape({
         name: PropTypes.string.isRequired,
         average: PropTypes.number.isRequired,
@@ -26,4 +26,4 @@ UsersListItem.propTypes = {
     }),
 };
 
-export default UsersListItem;
+export default React.memo(UsersListItem);
