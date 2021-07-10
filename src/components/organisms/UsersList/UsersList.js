@@ -1,84 +1,20 @@
-import React, { useState } from 'react';
-import { users as usersData } from 'data/users';
+import React from 'react';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
-import { StyledList, Wrapper, StyledTitle } from './UsersList.styles';
-import FormField from 'components/molecules/FormField/FormField';
-import { Button } from 'components/atoms/Button/Button';
+import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper.js';
+import { Title } from 'components/atoms/Title/Title.js';
+import { StyledList } from './UsersList.styles';
 
-const initialFormState = {
-    name: '',
-    attendance: '',
-    average: '',
-};
-
-const UsersList = () => {
-    const [users, setUsers] = useState(usersData);
-    const [formValues, setFormValues] = useState(initialFormState);
-
-    console.log(users);
-
-    const deleteUser = name => {
-        const filteredUsers = users.filter(user => user.name !== name);
-        setUsers(filteredUsers);
-    };
-
-    const handleInputChange = e => {
-        setFormValues({
-            ...formValues,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    const handleAddUser = e => {
-        e.preventDefault();
-
-        const newUser = {
-            name: formValues.name,
-            attendance: formValues.attendance,
-            average: parseFloat(formValues.average),
-        };
-
-        setUsers([newUser, ...users]);
-
-        setFormValues(initialFormState);
-    };
-
+const UsersList = ({ users, deleteUser }) => {
     return (
         <>
-            <Wrapper as="form" onSubmit={handleAddUser}>
-                <StyledTitle>Add new student:</StyledTitle>
-                <FormField
-                    label="Name"
-                    id="name"
-                    name="name"
-                    value={formValues.name}
-                    onChange={handleInputChange}
-                ></FormField>
-                <FormField
-                    label="Attendance"
-                    id="attendance"
-                    name="attendance"
-                    value={formValues.attendance}
-                    onChange={handleInputChange}
-                ></FormField>
-                <FormField
-                    label="Average"
-                    id="average"
-                    name="average"
-                    value={formValues.average}
-                    onChange={handleInputChange}
-                ></FormField>
-                <Button type="submit">Add</Button>
-            </Wrapper>
-
-            <Wrapper>
-                <StyledTitle>UsersList</StyledTitle>
+            <ViewWrapper>
+                <Title>Students list</Title>
                 <StyledList>
-                    {users.map((userData, i) => (
-                        <UsersListItem key={userData.name} deleteUser={deleteUser} userData={userData} index={i} />
+                    {users.map(userData => (
+                        <UsersListItem deleteUser={deleteUser} key={userData.name} userData={userData} />
                     ))}
                 </StyledList>
-            </Wrapper>
+            </ViewWrapper>
         </>
     );
 };
