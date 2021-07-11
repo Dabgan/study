@@ -3,7 +3,7 @@ import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper.js';
 import { Title } from 'components/atoms/Title/Title.js';
 import { Button } from 'components/atoms/Button/Button';
 import FormField from 'components/molecules/FormField/FormField';
-import { UsersContext } from 'views/Root.js';
+import { UsersContext } from 'providers/UsersProvider.js';
 
 const initialFormState = {
     name: '',

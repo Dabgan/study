@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { UsersContext } from 'views/Root.js';
+import { UsersContext } from 'providers/UsersProvider';
 import Button from 'components/atoms/DeleteButton/DeleteButton';
 import Average from 'components/atoms/Average/Average';
 import PropTypes from 'prop-types';
