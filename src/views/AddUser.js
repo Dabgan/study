@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useReducer } from 'react';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper.js';
 import { Title } from 'components/atoms/Title/Title.js';
 import { Button } from 'components/atoms/Button/Button';
@@ -9,23 +9,62 @@ const initialFormState = {
     name: '',
     attendance: '',
     average: '',
+    consent: false,
+    error: '',
+};
+
+const actionTypes = {
+    inputChange: 'INPUT CHANGE',
+    clearForm: 'CLEAR FORM',
+    agreeToTerms: 'AGREE TO TERMS',
+    throwError: 'THROW ERROR',
+};
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case actionTypes.inputChange:
+            return {
+                ...state,
+                [action.field]: action.value,
+            };
+        case actionTypes.clearForm:
+            return initialFormState;
+        case actionTypes.agreeToTerms:
+            return {
+                ...state,
+                error: '',
+                consent: !state.consent,
+            };
+        case actionTypes.throwError:
+            return {
+                ...state,
+                error: action.errorMsg,
+            };
+        default:
+            return state;
+    }
 };
 
 const AddUser = () => {
-    const [formValues, setFormValues] = useState(initialFormState);
+    const [formValues, dispatch] = useReducer(reducer, initialFormState);
     const { handleAddUser } = useContext(UsersContext);
 
     const handleInputChange = e => {
-        setFormValues({
-            ...formValues,
-            [e.target.name]: e.target.value,
+        dispatch({
+            type: actionTypes.inputChange,
+            field: e.target.name,
+            value: e.target.value,
         });
     };
 
     const handleSubmitUser = e => {
         e.preventDefault();
-        handleAddUser(formValues);
-        setFormValues(initialFormState);
+        if (formValues.consent) {
+            handleAddUser(formValues);
+            dispatch({ type: actionTypes.clearForm });
+        } else {
+            dispatch({ type: actionTypes.throwError, errorMsg: 'You need to agree to terms!' });
+        }
     };
 
     return (
@@ -47,6 +86,15 @@ const AddUser = () => {
                     value={formValues.average}
                     onChange={handleInputChange}
                 />
+                <FormField
+                    type="checkbox"
+                    label="consent"
+                    id="consent"
+                    name="consent"
+                    value={formValues.consent}
+                    onChange={() => dispatch({ type: actionTypes.agreeToTerms })}
+                />
+                {formValues.error ? <p>{formValues.error}</p> : null}
                 <Button type="submit">Add</Button>
             </ViewWrapper>
         </>

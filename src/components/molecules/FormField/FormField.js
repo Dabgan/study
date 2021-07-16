@@ -23,12 +23,12 @@ const FormField = ({ onChange, value, label, name, id, type = 'text' }) => {
 };
 
 FormField.propTypes = {
+    value: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     type: PropTypes.string,
     onChange: PropTypes.func,
-    value: PropTypes.string,
 };
 
 export default FormField;
