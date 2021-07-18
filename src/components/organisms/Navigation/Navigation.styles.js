@@ -7,6 +7,9 @@ export const Wrapper = styled.nav`
     padding: 30px 0;
 
     ${({ theme }) => theme.flexCenter('column', 'flex-start')}
+
+    grid-row: 1 / 3;
+    grid-column: 1 / 1;
 `;
 
 export const Logo = styled.div`
