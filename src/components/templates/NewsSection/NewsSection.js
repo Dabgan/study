@@ -43,7 +43,7 @@ const NewsSection = () => {
             .then(({ data: { data } }) => {
                 setArticles(data.allArticles);
             })
-            .catch(err => {
+            .catch(() => {
                 setError(`Sorry, we couldn't load articles for you`);
             });
     }, []);
