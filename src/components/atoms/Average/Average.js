@@ -7,7 +7,7 @@ const Average = ({ averageData }) => {
 };
 
 Average.propTypes = {
-    averageData: PropTypes.number.isRequired,
+    averageData: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default Average;

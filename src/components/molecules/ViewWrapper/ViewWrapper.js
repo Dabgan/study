@@ -8,4 +8,7 @@ export const ViewWrapper = styled.div`
     border-radius: 25px;
     box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
     margin: 25px;
+    /* border: 2px solid #f11b1b; */
+    /* max-height: 100%; */
+    height: 100%;
 `;
