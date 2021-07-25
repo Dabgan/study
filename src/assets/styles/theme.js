@@ -16,6 +16,10 @@ export const theme = {
         m: '12px',
         s: '11px',
     },
+    fontFamily: {
+        primary: "'Montserrat', sans-serif",
+        secondary: "'Roboto', sans-serif",
+    },
     margin: {
         m: '24px',
         sm: '20px',

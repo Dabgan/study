@@ -11,13 +11,13 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: ${({ theme }) => theme.fontFamily.primary};
     margin: 0;
     padding: 0;
   }
   
   a, button {
-    font-family: 'Montserrat', sans-serif;
+    font-family: ${({ theme }) => theme.fontFamily.primary};
   }
   
   p {

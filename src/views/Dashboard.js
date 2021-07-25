@@ -32,7 +32,7 @@ const Dashboard = () => {
                     </Link>
                 ))}
             </nav>
-            <UsersList users={students} />
+            <UsersList users={students} currentGroup={id} />
         </ViewWrapper>
     );
 };

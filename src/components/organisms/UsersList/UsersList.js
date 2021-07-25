@@ -3,10 +3,12 @@ import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 import { Title } from 'components/atoms/Title/Title.js';
 import { StyledList } from './UsersList.styles';
 
-const UsersList = ({ users = [] }) => {
+const UsersList = ({ users = [], currentGroup }) => {
+    console.log(currentGroup);
+
     return (
         <>
-            <Title>Students list</Title>
+            <Title>Group {currentGroup}</Title>
             <StyledList>
                 {users.map(userData => (
                     <UsersListItem key={userData.name} userData={userData} />
