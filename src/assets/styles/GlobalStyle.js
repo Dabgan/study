@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${({ theme }) => theme.fontFamily.primary};
   }
   
-  p {
+  p,ul {
     margin: 0;
     padding: 0;
   }

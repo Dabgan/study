@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper.js';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import UsersList from 'components/organisms/UsersList/UsersList';
+import { Title } from 'components/atoms/Title/Title.js';
+import { StyledHeader } from './Dashboard.styles';
+
 import axios from 'axios';
+import Modal from 'components/organisms/Modal/Modal';
 
 const Dashboard = () => {
     const [students, setStudents] = useState([]);
@@ -25,14 +29,12 @@ const Dashboard = () => {
 
     return (
         <ViewWrapper>
-            <nav>
-                {groups.map(group => (
-                    <Link key={group} to={`/group/${group}`}>
-                        {group}{' '}
-                    </Link>
-                ))}
-            </nav>
-            <UsersList users={students} currentGroup={id} />
+            <StyledHeader>
+                <Title>Group {id || groups[0]}</Title>
+                <Modal groups={groups} />
+            </StyledHeader>
+
+            <UsersList users={students} />
         </ViewWrapper>
     );
 };

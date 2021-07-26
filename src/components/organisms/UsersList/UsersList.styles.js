@@ -7,3 +7,7 @@ export const StyledList = styled.ul`
     /* border: 2px solid #2ce90a; */
     /* min-height: 100%; */
 `;
+
+export const StyledHeader = styled.header`
+    ${({ theme }) => theme.flexCenter('row', 'flex-start')}
+`;
