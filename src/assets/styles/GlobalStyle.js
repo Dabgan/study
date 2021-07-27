@@ -21,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   p,ul {
-    margin: 0;
-    padding: 0;
+    margin: 0 0;
+    padding: 0 0;
   }
 `;

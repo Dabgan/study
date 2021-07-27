@@ -25,4 +25,18 @@ export const handlers = [
             })
         );
     }),
+
+    rest.get('/student/:name', (req, res, ctx) => {
+        if (req.params.name) {
+            const matchingStudents = students.filter(student =>
+                student.name.toLowerCase().includes(decodeURIComponent(req.params.name.toLowerCase()))
+            );
+            return res(
+                ctx.status(200),
+                ctx.json({
+                    students: matchingStudents,
+                })
+            );
+        }
+    }),
 ];

@@ -125,4 +125,11 @@ export const students = [
         average: '4.9',
         group: 'C',
     },
+    {
+        id: '19',
+        name: 'Ania Null',
+        attendance: '79%',
+        average: '5.0',
+        group: 'C',
+    },
 ];
