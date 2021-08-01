@@ -1,14 +1,14 @@
-import UsersList from './UsersList';
-import { fireEvent, screen } from '@testing-library/react';
+import StudentsList from './StudentsList';
+import { screen } from '@testing-library/react';
 import { renderWithProvider } from 'helpers/renderWithProvider';
 
 describe('Users List', () => {
     it('Renders the component', () => {
-        renderWithProvider(<UsersList />);
+        renderWithProvider(<StudentsList />);
     });
 
     it('displays users', () => {
-        renderWithProvider(<UsersList />);
+        renderWithProvider(<StudentsList />);
         screen.getByText('Patrycja Gonciarz');
         screen.getByText('Olga Hahn');
         screen.getByText('Paweł Roman');

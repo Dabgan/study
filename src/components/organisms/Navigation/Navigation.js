@@ -11,7 +11,6 @@ const Navigation = () => {
             <StyledLink to="/group" exact>
                 Group
             </StyledLink>
-            <StyledLink to="/add-user">Add user</StyledLink>
         </Wrapper>
     );
 };
