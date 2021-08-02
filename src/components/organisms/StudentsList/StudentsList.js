@@ -1,12 +1,20 @@
-import React from 'react';
-import StudentsListItem from 'components/molecules/StudentsListItem/StudentsListItem';
-import { useStudents } from 'hooks/useStudents';
-import { StyledList } from './StudentsList.styles';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import StudentsListItem from 'components/molecules/StudentsListItem/StudentsListItem';
+import { StyledList } from './StudentsList.styles';
+import { useStudents } from 'hooks/useStudents';
 
 const StudentsList = () => {
+    const [students, setStudents] = useState([]);
     const { id } = useParams();
-    const { students } = useStudents({ groupId: id });
+    const { getStudents } = useStudents();
+
+    useEffect(() => {
+        (async () => {
+            const students = await getStudents(id);
+            setStudents(students);
+        })();
+    }, [getStudents, id]);
 
     return (
         <>

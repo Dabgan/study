@@ -1,34 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Input } from 'components/atoms/Input/Input';
+import React, { useState } from 'react';
+import debounce from 'lodash.debounce';
+import { useCombobox } from 'downshift';
 import {
     SearchBarWrapper,
+    SearchResults,
+    SearchResultsItem,
+    SearchWrapper,
     StatusInfo,
-    StyledDropdown,
-    StyledListItem,
-    SearchList,
 } from 'components/organisms/SearchBar/SearchBar.styles';
+import { useStudents } from 'hooks/useStudents';
 
 export const SearchBar = () => {
-    const [inputValue, setInputValue] = useState('');
     const [matchingStudents, setMatchingStudents] = useState([]);
+    const { findStudents } = useStudents();
 
-    const handleInputChange = e => {
-        setInputValue(e.target.value);
-    };
+    const getMatchingStudents = debounce(async ({ inputValue }) => {
+        const { students } = await findStudents(inputValue);
+        setMatchingStudents(students);
+    }, 500);
 
-    useEffect(() => {
-        if (inputValue) {
-            axios
-                .get(`/student/${encodeURIComponent(inputValue)}`)
-                .then(({ data }) => {
-                    setMatchingStudents(data.students);
-                })
-                .catch(err => console.log(err));
-        } else {
-            setMatchingStudents([]);
-        }
-    }, [inputValue]);
+    const { isOpen, getMenuProps, getInputProps, getComboboxProps, highlightedIndex, getItemProps } = useCombobox({
+        items: matchingStudents,
+        onInputValueChange: getMatchingStudents,
+    });
 
     return (
         <SearchBarWrapper>
@@ -38,21 +33,21 @@ export const SearchBar = () => {
                     <strong>Teacher</strong>
                 </p>
             </StatusInfo>
-
-            <StyledDropdown>
-                <Input value={inputValue} onChange={e => handleInputChange(e)} />
-                {matchingStudents.length ? (
-                    <SearchList>
-                        {matchingStudents.map((student, index) => {
-                            return (
-                                <StyledListItem key={student.id} index={index} isSelected>
-                                    {student.name}
-                                </StyledListItem>
-                            );
-                        })}
-                    </SearchList>
-                ) : null}
-            </StyledDropdown>
+            <SearchWrapper {...getComboboxProps()}>
+                <Input {...getInputProps()} name="Search" id="Search" placeholder="Search" />
+                <SearchResults isVisible={isOpen && matchingStudents.length > 0} {...getMenuProps()}>
+                    {isOpen &&
+                        matchingStudents.map((item, index) => (
+                            <SearchResultsItem
+                                isHighlighted={highlightedIndex === index}
+                                {...getItemProps({ item, index })}
+                                key={item.id}
+                            >
+                                {item.name}
+                            </SearchResultsItem>
+                        ))}
+                </SearchResults>
+            </SearchWrapper>
         </SearchBarWrapper>
     );
 };
