@@ -1,44 +1,8 @@
 import AddUser from './AddUser';
-import { fireEvent, screen } from '@testing-library/react';
-import { renderWithProvider } from 'helpers/renderWithProvider';
-import Dashboard from './Dashboard';
+import { render } from 'test-utils';
 
 describe('Add user', () => {
     it('Renders the component', () => {
-        renderWithProvider(<AddUser />);
-    });
-
-    it('adds new user and display it on dashboard', () => {
-        renderWithProvider(
-            <>
-                <AddUser />
-                <Dashboard />
-            </>
-        );
-        fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'Gabriel' } });
-        fireEvent.change(screen.getByLabelText('Attendance'), { target: { value: '95%' } });
-        fireEvent.change(screen.getByLabelText('Average'), { target: { value: '5.9' } });
-        fireEvent.click(screen.getByLabelText('consent'));
-        fireEvent.click(screen.getByText('Add'));
-
-        screen.getByText('Gabriel');
-    });
-
-    it('prevents adding new user if consent is not checked', () => {
-        renderWithProvider(
-            <>
-                <AddUser />
-                <Dashboard />
-            </>
-        );
-        fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'Gabriel' } });
-        fireEvent.change(screen.getByLabelText('Attendance'), { target: { value: '95%' } });
-        fireEvent.change(screen.getByLabelText('Average'), { target: { value: '5.9' } });
-        fireEvent.click(screen.getByText('Add'));
-
-        expect(screen.getByText('You need to agree to terms!')).toBeInTheDocument();
-
-        const newUser = screen.queryByText('Gabriel');
-        expect(newUser).not.toBeInTheDocument();
+        render(<AddUser />);
     });
 });

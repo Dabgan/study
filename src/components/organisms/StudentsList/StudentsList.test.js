@@ -1,16 +1,25 @@
 import StudentsList from './StudentsList';
-import { screen } from '@testing-library/react';
-import { renderWithProvider } from 'helpers/renderWithProvider';
+import { setupServer } from 'msw/node';
+import { handlers } from 'mocks/handlers';
+import { screen, render } from 'test-utils';
+import { Route, MemoryRouter } from 'react-router-dom';
 
-describe('Users List', () => {
-    it('Renders the component', () => {
-        renderWithProvider(<StudentsList />);
-    });
+const server = setupServer(...handlers);
 
-    it('displays users', () => {
-        renderWithProvider(<StudentsList />);
-        screen.getByText('Patrycja Gonciarz');
-        screen.getByText('Olga Hahn');
-        screen.getByText('Paweł Roman');
+describe('Students List', () => {
+    beforeAll(() => server.listen());
+    afterEach(() => server.resetHandlers());
+    afterAll(() => server.close());
+
+    it('Renders the component and displays students from group A', async () => {
+        render(
+            <MemoryRouter initialEntries={['/group/A']}>
+                <Route path="/group/:id?">
+                    <StudentsList />
+                </Route>
+            </MemoryRouter>
+        );
+        const student = await screen.findByText(/Olga Hahn/);
+        expect(student).toBeInTheDocument();
     });
 });

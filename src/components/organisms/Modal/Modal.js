@@ -6,7 +6,7 @@ import { List, Item, Subtitle, Wrapper } from './Modal.styles';
 import { ReactComponent as ArrowIcon } from 'assets/icons/arrow-right.svg';
 import { useHistory } from 'react-router-dom';
 
-ModalComponent.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') ModalComponent.setAppElement('#root');
 
 const customStyles = {
     content: {
