@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper.js';
 import { Redirect, useParams } from 'react-router-dom';
 import StudentsList from 'components/organisms/StudentsList/StudentsList';
