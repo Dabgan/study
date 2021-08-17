@@ -37,8 +37,8 @@ export const SearchBar = () => {
                 <Input {...getInputProps()} name="Search" id="Search" placeholder="Search" />
                 <SearchResults
                     isVisible={isOpen && matchingStudents.length > 0}
-                    data-testid="students-list"
                     {...getMenuProps()}
+                    aria-label="results"
                 >
                     {isOpen &&
                         matchingStudents.map((item, index) => (

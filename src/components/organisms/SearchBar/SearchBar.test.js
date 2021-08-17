@@ -2,6 +2,7 @@ import { SearchBar } from './SearchBar';
 import { setupServer } from 'msw/node';
 import { handlers } from 'mocks/handlers';
 import { fireEvent, screen, render } from 'test-utils';
+import { waitFor } from '@testing-library/react';
 
 const server = setupServer(...handlers);
 
@@ -33,12 +34,17 @@ describe('SearchBar', () => {
         const student = await screen.findByText(/Paweł Andrzejewski/);
         expect(student).toBeInTheDocument();
     });
-    it('is not displaying matching users list when input is empty', async () => {
+    it('hides users list when input is empty', async () => {
         render(<SearchBar />);
         const input = screen.getByPlaceholderText('Search');
         fireEvent.change(input, { target: { value: 'Paw' } });
+        await screen.findByText(/Paweł Andrzejewski/);
+
         fireEvent.change(input, { target: { value: '' } });
-        const list = await screen.findByTestId('students-list');
-        expect(list).toBeEmptyDOMElement();
+
+        await waitFor(() => {
+            const list = screen.getByLabelText('results');
+            expect(list).toBeEmptyDOMElement();
+        });
     });
 });

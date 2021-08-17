@@ -23,7 +23,7 @@ const customStyles = {
     },
 };
 
-const Modal = ({ children, groups = [] }) => {
+const Modal = ({ groups = [] }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedGroup, setSelectedGroup] = useState('');
     const history = useHistory();
@@ -51,7 +51,6 @@ const Modal = ({ children, groups = [] }) => {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                {children}
                 <ViewWrapper margin="0 0">
                     <Wrapper>
                         <Subtitle>Select a group</Subtitle>

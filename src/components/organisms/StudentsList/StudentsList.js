@@ -19,9 +19,9 @@ const StudentsList = () => {
     return (
         <>
             <StyledList>
-                {students.map(userData => (
-                    <StudentsListItem key={userData.name} userData={userData} />
-                ))}
+                {students.map(userData => {
+                    return <StudentsListItem key={userData.name} userData={userData} />;
+                })}
             </StyledList>
         </>
     );
