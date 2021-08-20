@@ -17,12 +17,32 @@ export const handlers = [
             })
         );
     }),
-    rest.get('/students/:group', (req, res, ctx) => {
-        const matchingStudents = req.params.group ? students.filter(student => student.group === req.params.group) : [];
+    rest.get('/groups/:id', (req, res, ctx) => {
+        const matchingStudents = req.params.id ? students.filter(student => student.group === req.params.id) : [];
         return res(
             ctx.status(200),
             ctx.json({
                 students: matchingStudents,
+            })
+        );
+    }),
+
+    rest.get('/students/:id', (req, res, ctx) => {
+        const matchingStudent = req.params.id ? students.find(student => student.id === req.params.id) : [];
+
+        if (!matchingStudent) {
+            return res(
+                ctx.status(404),
+                ctx.json({
+                    error: 'Matching students not find',
+                })
+            );
+        }
+
+        return res(
+            ctx.status(200),
+            ctx.json({
+                student: matchingStudent,
             })
         );
     }),

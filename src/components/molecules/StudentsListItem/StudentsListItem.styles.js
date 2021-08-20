@@ -13,6 +13,7 @@ export const Wrapper = styled.li`
         height: 1px;
         background-color: lightgrey;
     }
+    cursor: pointer;
 `;
 
 export const StyledInfo = styled.div`

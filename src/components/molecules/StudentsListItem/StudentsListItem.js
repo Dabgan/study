@@ -6,11 +6,11 @@ import PropTypes from 'prop-types';
 import { UserShape } from 'types';
 import { Wrapper, StyledInfo } from './StudentsListItem.styles';
 
-const StudentsListItem = ({ userData: { average, name, attendance = '0%' } }) => {
+const StudentsListItem = ({ userData: { average, name, attendance = '0%' }, ...props }) => {
     const { deleteUser } = useContext(UsersContext);
 
     return (
-        <Wrapper>
+        <Wrapper {...props}>
             <Average averageData={average}>{average}</Average>
             <StyledInfo>
                 <p>{name}</p>
