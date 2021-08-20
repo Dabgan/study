@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-    ${({ theme }) => theme.flexCenter};
-    font-size: ${({ theme }) => theme.fontSize.m};
+    ${({ theme }) => theme.flexCenter()};
+    font-size: ${({ isBig, theme }) => (isBig ? theme.fontSize.xl : theme.fontSize.m)};
     color: ${({ theme }) => theme.colors.white};
-    width: 34px;
-    height: 34px;
+    width: ${({ isBig }) => (isBig ? '64px' : '34px')};
+    height: ${({ isBig }) => (isBig ? '64px' : '34px')};
     border-radius: 50%;
     font-weight: 700;
-    margin-right: ${({ theme }) => theme.margin.m};
+    margin-right: ${({ marginRight, theme }) => (marginRight ? marginRight : theme.margin.m)};
     background-color: ${({ theme, value }) => {
         if (value >= 4) return theme.colors.success;
         if (value >= 3) return theme.colors.warning;

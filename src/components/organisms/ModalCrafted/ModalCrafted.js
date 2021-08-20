@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { ModalWrapper } from 'components/organisms/ModalCrafted/ModalCrafted.styles';
+import { ModalBackground, ModalWrapper } from 'components/organisms/ModalCrafted/ModalCrafted.styles';
 import { Button } from 'components/atoms/Button/Button';
 
 const modalContainer = document.getElementById('modal-container');
@@ -15,10 +15,15 @@ export const ModalCrafted = ({ handleClose, children }) => {
     }, [modalNode]);
 
     return ReactDOM.createPortal(
-        <ModalWrapper>
-            {children}
-            <Button onClick={handleClose}>Close</Button>
-        </ModalWrapper>,
+        <>
+            <ModalBackground onClick={handleClose} />
+            <ModalWrapper>
+                {children}
+                <Button isBig onClick={handleClose}>
+                    Close
+                </Button>
+            </ModalWrapper>
+        </>,
         modalNode
     );
 };
