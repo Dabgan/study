@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import Average from 'components/atoms/Average/Average';
+import { UserShape } from 'types';
 import {
     Wrapper,
     StyledTitle,
@@ -50,3 +52,7 @@ const StudentDetails = ({ student: { name, group, average, attendance } }) => {
 };
 
 export default StudentDetails;
+
+StudentDetails.propTypes = {
+    student: PropTypes.shape(UserShape),
+};

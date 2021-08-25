@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ModalWrapper } from 'components/organisms/Modal/Modal.styles';
 import { Button } from 'components/atoms/Button/Button';
 
@@ -13,4 +14,11 @@ export const Modal = ({ handleClose, isOpen, children, withButton }) => {
             ) : null}
         </ModalWrapper>
     );
+};
+
+Modal.propTypes = {
+    handleClose: PropTypes.func,
+    isOpen: PropTypes.bool.isRequired,
+    children: PropTypes.element,
+    withButton: PropTypes.bool,
 };

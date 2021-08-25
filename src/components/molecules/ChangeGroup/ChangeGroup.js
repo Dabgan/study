@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { List, Item, Subtitle, Wrapper } from './ChangeGroup.styles';
 import { Button } from 'components/atoms/Button/Button';
 import { useHistory } from 'react-router-dom';
 
-const ChangeGroup = ({ groups, handleClose }) => {
+const ChangeGroup = ({ groups = [], handleClose }) => {
     const [selectedGroup, setSelectedGroup] = useState('');
     const history = useHistory();
 
@@ -32,3 +33,8 @@ const ChangeGroup = ({ groups, handleClose }) => {
 };
 
 export default ChangeGroup;
+
+ChangeGroup.propTypes = {
+    group: PropTypes.array,
+    handleClose: PropTypes.func,
+};
