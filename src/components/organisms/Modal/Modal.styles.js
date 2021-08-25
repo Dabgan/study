@@ -1,33 +1,21 @@
 import styled from 'styled-components';
+import ReactModal from 'react-modal';
 
-export const Wrapper = styled.div`
-    ${({ theme }) => theme.flexCenter('column')}
-`;
+export const ModalWrapper = styled(ReactModal)`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 500px;
+    background-color: ${({ theme }) => theme.colors.white};
+    border-radius: 15px;
+    box-shadow: 8px -5px 25px -10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding-bottom: 20px;
 
-export const Subtitle = styled.h2`
-    font-family: ${({ theme }) => theme.fontFamily.secondary};
-    color: ${({ theme }) => theme.colors.darkGrey};
-    font-weight: 700;
-    letter-spacing: 0.02em;
-`;
-
-export const List = styled.ul`
-    width: 100%;
-`;
-
-export const Item = styled.li`
-    list-style: none;
-    color: ${({ isSelected, theme }) => (isSelected ? theme.colors.lightGrey : theme.colors.darkGrey)};
-    font-weight: 500;
-    font-family: ${({ theme }) => theme.fontFamily.secondary};
-    width: 100%;
-    text-align: center;
-    margin: 20px 0;
-    padding: 5px 0;
-    cursor: pointer;
-    background-color: ${({ isSelected, theme }) => (isSelected ? theme.colors.darkGrey : 'inherit')};
-
-    :hover {
-        background-color: ${({ isSelected, theme }) => (isSelected ? theme.colors.darkGrey : theme.colors.lightGrey)};
+    &:focus {
+        outline: none;
     }
 `;

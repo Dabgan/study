@@ -1,18 +1,24 @@
-import Modal from './Modal';
+import StudentDetails from 'components/molecules/StudentDetails/StudentDetails';
+import { Modal } from './Modal';
 
 export default {
-    title: 'Components/organisms/Modal',
+    title: 'components/organisms/Modal',
     component: Modal,
 };
 
-const Template = args => <Modal {...args}></Modal>;
+const Template = args => (
+    <Modal withButton isOpen={true}>
+        <StudentDetails
+            student={{
+                id: '9',
+                name: 'Beata Maniecka',
+                attendance: '95%',
+                average: '5.0',
+                group: 'B',
+            }}
+        />
+    </Modal>
+);
 
 export const Default = Template.bind({});
-Default.args = {
-    groups: ['A', 'B', 'C'],
-};
-
-export const LotOfGroups = Template.bind({});
-LotOfGroups.args = {
-    groups: ['A', 'B', 'C', 'E', 'F', 'G'],
-};
+Default.args = {};
