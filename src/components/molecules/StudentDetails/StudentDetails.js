@@ -11,7 +11,7 @@ import {
     StyledSpecialization,
 } from './StudentDetails.styles';
 
-const StudentDetails = ({ student: { name, group, average, attendance } }) => {
+const StudentDetails = ({ student: { name, group, average, attendance, course, grades } }) => {
     return (
         <Wrapper>
             <StyledAverage isBig averageData={average} marginRight={'0px'}>
@@ -22,30 +22,20 @@ const StudentDetails = ({ student: { name, group, average, attendance } }) => {
                 {name} | Group: {group}
             </StyledTitle>
             <StyledInfo>
-                <h3>Course:</h3> <StyledSpecialization>Economy and finances </StyledSpecialization>
+                <h3>Course:</h3> <StyledSpecialization>{course}</StyledSpecialization>
                 <h3>Average grades:</h3>
                 <StyledList>
-                    <StyledListItem>
-                        <p>Modern Economy</p>
-                        <Average averageData={4.2} marginRight={'0px'}>
-                            {average}
-                        </Average>
-                    </StyledListItem>
-                    <StyledListItem>
-                        <p>Trade and Logistics</p>
-                        <Average averageData={3.2} marginRight={'0px'}>
-                            {average}
-                        </Average>
-                    </StyledListItem>
-                    <StyledListItem>
-                        <p>Business Philosophy</p>
-                        <Average averageData={average} marginRight={'0px'}>
-                            {average}
-                        </Average>
-                    </StyledListItem>
+                    {grades.map(grade => (
+                        <StyledListItem key={grade.subject}>
+                            <p>{grade.subject}</p>
+                            <Average averageData={grade.average} marginRight={'0px'}>
+                                {grade.average}
+                            </Average>
+                        </StyledListItem>
+                    ))}
                 </StyledList>
                 <h3>Attendance:</h3>
-                <p>{attendance}</p>
+                <p>{attendance}%</p>
             </StyledInfo>
         </Wrapper>
     );

@@ -14,7 +14,7 @@ const StudentsListItem = ({ userData: { average, name, attendance = '0%' }, ...p
             <Average averageData={average}>{average}</Average>
             <StyledInfo>
                 <p>{name}</p>
-                <p>attendance: {attendance}</p>
+                <p>attendance: {attendance}%</p>
             </StyledInfo>
             <DeleteButton onClick={() => deleteUser(name)} data-testid="delete-button" />
         </Wrapper>
