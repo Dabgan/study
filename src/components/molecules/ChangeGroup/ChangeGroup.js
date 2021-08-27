@@ -20,8 +20,8 @@ const ChangeGroup = ({ groups = [], handleClose }) => {
             <Subtitle>Select a group</Subtitle>
             <List>
                 {groups.map(group => (
-                    <Item key={group} onClick={e => handleSelectGroup(e)} isSelected={selectedGroup === group}>
-                        {group}
+                    <Item key={group.id} onClick={e => handleSelectGroup(e)} isSelected={selectedGroup === group.id}>
+                        {group.id}
                     </Item>
                 ))}
             </List>

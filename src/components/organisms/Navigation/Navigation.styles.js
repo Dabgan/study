@@ -36,6 +36,7 @@ export const StyledLink = styled(NavLink).attrs({ activeClassName })`
     text-align: right;
     margin: 15px 20px 15px auto;
     position: relative;
+    cursor: pointer;
     &.${activeClassName} {
         &::after {
             opacity: 1;

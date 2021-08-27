@@ -26,7 +26,6 @@ const StudentsList = () => {
         setCurrentStudent(student);
         handleOpenModal();
     };
-
     return (
         <>
             <StyledList>

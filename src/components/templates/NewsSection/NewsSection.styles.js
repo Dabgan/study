@@ -41,9 +41,9 @@ export const TitleWrapper = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-    display: flex;
+    ${({ theme }) => theme.flexCenter()};
+    flex-flow: row wrap;
     img {
-        margin-left: 35px;
         max-width: 200px;
         object-fit: cover;
     }
