@@ -19,7 +19,7 @@ describe('Students List', () => {
                 </Route>
             </MemoryRouter>
         );
-        const student = await screen.findByText(/Olga Hahn/);
+        const student = await screen.findByText(/Lonnie Deckow/);
         expect(student).toBeInTheDocument();
     });
 });
