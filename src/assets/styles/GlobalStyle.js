@@ -15,6 +15,7 @@ export const GlobalStyle = createGlobalStyle`
         font-family: ${({ theme }) => theme.fontFamily.primary};
         margin: 0;
         padding: 0;
+        overflow-y: hidden;
     }
 
     a,

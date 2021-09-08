@@ -42,7 +42,7 @@ export const TitleWrapper = styled.div`
 
 export const ContentWrapper = styled.div`
     ${({ theme }) => theme.flexCenter()};
-    flex-flow: row wrap;
+    /* flex-flow: row wrap; */
     img {
         max-width: 200px;
         object-fit: cover;
