@@ -14,6 +14,9 @@ const Navigation = () => {
             <StyledLink to="/group" exact>
                 Groups
             </StyledLink>
+            <StyledLink to="/notes" exact>
+                Notes
+            </StyledLink>
             <StyledLink as="a" to="/" onClick={auth.signOut}>
                 Logout
             </StyledLink>
