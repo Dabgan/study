@@ -10,18 +10,29 @@ import { useForm } from 'react-hook-form';
 const Notes = () => {
     const notes = useSelector(state => state.notes);
     const dispatch = useDispatch();
-
-    const handleAddNote = () => {
-        dispatch(
-            addNote({ title: `New Note ${Math.floor(Math.random() * 10)}`, content: 'Lorem ipsum dolor sit amet' })
-        );
-    };
-
     const {
         register,
         handleSubmit,
         formState: { errors },
+        reset,
+        getValues,
+        setFocus,
     } = useForm();
+
+    const handleAddNote = ({ title = 'Note', content }) => {
+        if (!title) title = 'Note';
+        dispatch(addNote({ title, content }));
+        setFocus('title');
+        reset();
+    };
+
+    const onEnterPress = e => {
+        if (e.keyCode === 13 && e.shiftKey === false) {
+            e.preventDefault();
+            if (getValues().content !== '') handleAddNote(getValues());
+        }
+        return;
+    };
 
     return (
         <Wrapper>
@@ -39,6 +50,7 @@ const Notes = () => {
                         label="Content"
                         name="content"
                         id="content"
+                        onKeyDown={e => onEnterPress(e)}
                     />
                     {errors.content && <span>Please provide content!</span>}
                     <Button type="submit">Add</Button>
